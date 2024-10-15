@@ -20,21 +20,22 @@ def lee_libros(ruta_csv):
         return res
 
 
-# TODO: Implemente las funciones solicitadas en el enunciado
 def autores_disponibles(libros, inicial):
-    pass
-
+    autores = {libro.autor for libro in libros if libro.disponible and libro.autor.startswith(inicial)}
+    return sorted(autores)
 
 def titulos_baratos_actuales(libros):
-    pass
-
+    return [libro.titulo for libro in libros if libro.precio < 20 and libro.fecha_publicacion.year >= 2001]
 
 def media_precios(libros, palabra):
-    pass
-
+    precios = [libro.precio for libro in libros if palabra.lower() in libro.titulo.lower()]
+    if not precios:
+        return None
+    return sum(precios) / len(precios)
 
 def libro_mas_reciente(libros):
-    pass
+    return max(libros, key=lambda libro: libro.fecha_publicacion)
+
 
 
 if __name__ == "__main__":
